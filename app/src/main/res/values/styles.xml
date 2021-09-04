@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="bottom_nav_style" parent="Widget.Design.BottomNavigationView" >
+        <item name="colorPrimary">@color/white</item>
+        <item name="itemTextColor">@color/txt_color_bottom_nav</item>
+        <item name="itemIconTint"> @color/txt_color_bottom_nav</item>
+        <item name="itemBackground">@drawable/bk_bottom_nav_item</item>
+    </style>
+</resources>

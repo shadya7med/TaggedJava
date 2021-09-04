@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.omegaventions.taggedjava.modules.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.deviceBinder != null}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/paired_device_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp20"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/paired_device"
+                android:textColor="@color/color080B1C"
+                android:textSize="@dimen/sp18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/device_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@{viewModel.deviceBinder.device.name}"
+                android:textColor="@color/color484848"
+                android:textSize="@dimen/sp14"
+                app:layout_constraintStart_toStartOf="@id/paired_device_tv"
+                app:layout_constraintTop_toBottomOf="@id/paired_device_tv"
+                tools:text="@string/paired_device" />
+
+            <TextView
+                android:id="@+id/device_battery_level_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp50"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@{String.format(@string/battery_level_format,viewModel.deviceBinder.batteryLevel)}"
+                android:textColor="@color/color080B1C"
+                android:textSize="@dimen/sp14"
+                app:layout_constraintBottom_toBottomOf="@+id/device_name_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/device_name_tv"
+                tools:text="@string/paired_device" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/no_devices_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp250"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/no_devices"
+            android:textColor="@color/color080B1C"
+            android:textSize="@dimen/sp14"
+            android:visibility="@{viewModel.deviceBinder == null}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/search_btn"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="@dimen/dp250"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginHorizontal="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/bk_rounded_ea4c89"
+            android:elevation="0dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/find_a_device"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:visibility="@{viewModel.deviceBinder == null}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/no_devices_tv"
+            app:layout_constraintVertical_bias="0.85" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
